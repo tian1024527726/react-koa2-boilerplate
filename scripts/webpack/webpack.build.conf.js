@@ -10,7 +10,6 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin') //压缩css
 const config = require('../../config')
 const utils = require('../tools/utils')
-const project = utils.argv.project
 const dllConfig = config.dlls.dllPlugin.defaults;
 const dllPath = path.resolve(dllConfig.buildPath);
 const plugins = [
@@ -48,7 +47,7 @@ const plugins = [
     }
   }),
   new HtmlWebpackPlugin({
-    template: `${project}/client/index.html`,
+    template: 'src/client/index.html',
     //防止各site项目一样时，不生成html文件
     cache: false,
     minify: {
@@ -101,7 +100,7 @@ glob.sync(`${dllConfig.buildPath}` + '/*.dll.css').forEach((dllPath) => {
 
 const clientWebpackConfig = merge(baseWebpackConfig.client, {
   entry: {
-    index: `./${project}/client/index.js`
+    index: './src/client/index.js'
   },
   output: {
     publicPath: config.dists.publicPath,
@@ -137,7 +136,7 @@ if (config.build.productionGzip) {
 }
 
 const serverWebpackConfig = merge(baseWebpackConfig.server, {
-  entry: `./${project}/server/index.js`,
+  entry: './src/server/index.js',
   output: {
     filename: '[name].js',
     chunkFilename: '[chunkhash].js'

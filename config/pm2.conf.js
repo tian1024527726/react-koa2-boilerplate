@@ -1,11 +1,10 @@
-const utils = require('../scripts/tools/utils')
-const project = utils.argv.project
-const site = utils.argv.site
+const name = 'My_project';
+
 //pm2的配置参数
 module.exports = {
-  name: `${site}_${project}`,
+  name: name,
   script: 'main.js',
-  cwd: `${process.cwd()}/dist/${site}/${project}/server`,
+  cwd: `${process.cwd()}/dist/${name}/server`,
   instances: '2',
   exec_mode: 'cluster',
   max_memory_restart: '1G',

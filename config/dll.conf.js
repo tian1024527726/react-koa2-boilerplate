@@ -3,8 +3,7 @@ const utils = require('../scripts/tools/utils');
 const pullAll = require('lodash/pullAll');//数组除值
 const uniq = require('lodash/uniq');//数组去重
 const glob = require('glob');//Match files
-const project = utils.argv.project;
-const componentsPath = glob.sync(path.resolve('h5_commonr'));
+const componentsPath = glob.sync(path.resolve('h5_common'));
 
 
 const reactDll = {
@@ -23,12 +22,11 @@ const reactDll = {
         'react-redux',
         'redux',
         'react-router',
-        'classnames',
-        path.resolve('h5_commonr/noAnyDoor/jsrsasignc'),
+        'classnames'
       ],
       //针对开发本地调试用devPath，针对各种环境打包时用buildPath
-      devPath: 'h5_commonr/@react_dll/dev_dll',
-      buildPath: process.env.NODE_ENV === 'development' ? 'h5_commonr/@react_dll/dev_dll' : 'h5_commonr/@react_dll/prd_dll',
+      devPath: 'h5_common/@react_dll/dev_dll',
+      buildPath: process.env.NODE_ENV === 'development' ? 'h5_common/@react_dll/dev_dll' : 'h5_common/@react_dll/prd_dll',
     },
 
     entry(pgk) {

@@ -5,15 +5,9 @@ const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 const utils = require('./utils')
-const project = utils.argv.project
 //用于打包时将node——server端不需要打包编译的模块copy置打包后项目的serber/node_modules文件下
-const copyModules = (config, site) => {
+const copyModules = (config) => {
   const counter = { current: 0, total: 0, caret: 4 }
-  console.log(site)
-  if (site) {
-    config.dists.modules = path.resolve(`dist/${site}/${project}/server/node_modules`);
-    config.dists.server = path.resolve(`dist/${site}/${project}/server`);
-  }
   const copyModule = deps => {
     for (let dep in deps) {
       let modulePath = path.resolve(config.paths.modules, dep)
@@ -50,13 +44,9 @@ const copyModules = (config, site) => {
   }
 
   printProcess('build manifest files for pm2...')
-  if (site) {
-    config.pm2.apps[0].name = `${site}_${project}`;
-    config.pm2.apps[0].cwd = `${process.cwd()}/dist/${site}/${project}/server`;
-    fs.writeFileSync(path.resolve(config.dists.server, 'pm2.json'), JSON.stringify(config.pm2, null, 2))
-  } else {
-    fs.writeFileSync(path.resolve(config.dists.server, 'pm2.json'), JSON.stringify(config.pm2, null, 2))
-  }
+
+  fs.writeFileSync(path.resolve(config.dists.server, 'pm2.json'), JSON.stringify(config.pm2, null, 2))
+
 
   printProcess('copy package.json for server...')
   cp('-R', path.resolve(config.paths.server, 'package.json'), path.normalize(`${config.dists.server}/`))
@@ -64,7 +54,7 @@ const copyModules = (config, site) => {
   if (config.build.includeModules) {
     printProcess('start to copy server modules...')
     mkdir('-p', config.dists.modules)
-    let manifest = require(`../../${project}/server/package.json`)
+    let manifest = require('../../src/server/package.json')
     let serverModules = _.get(manifest, 'dependencies')
     if (serverModules) {
       counter.total += _.size(serverModules)

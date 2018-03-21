@@ -4,11 +4,11 @@
   "description": "React & Koa isomorphic boilerplate",
   "author": "yyb",
   "scripts": {
-    "analyze": "cross-env NODE_ENV=production node scripts/build.js --analyze --site",
-    "start": "cross-env NODE_ENV=development node scripts/dev-server.js --site",
-    "start:prd": "cross-env NODE_ENV=production node scripts/prd-server.js --site",
-    "build:test": "cross-env NODE_ENV=testing node scripts/build.js --site",
-    "build:prd": "cross-env NODE_ENV=production node scripts/build.js --site",
+    "analyze": "cross-env NODE_ENV=production node scripts/build.js --analyze",
+    "start": "cross-env NODE_ENV=development node scripts/dev-server.js",
+    "start:prd": "cross-env NODE_ENV=production node scripts/prd-server.js",
+    "build:test": "cross-env NODE_ENV=testing node scripts/build.js",
+    "build:prd": "cross-env NODE_ENV=production node scripts/build.js",
     "build:dll": "cross-env node scripts/build_dll.js",
     "clean": "rimraf dist/*"
   },

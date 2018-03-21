@@ -4,12 +4,10 @@ require('shelljs/global')
 const fs = require('fs')
 const glob = require('glob')
 const path = require('path')
-const utils = require('./utils')
-const project = utils.argv.project
 
-module.exports = (config, _site) => {
+module.exports = (config) => {
   const buildPath = config.dlls.dllPlugin.defaults.buildPath;
-  const distPath = path.resolve(`dist/${_site}/${project}/client/js`);
+  const distPath = path.resolve(`${config.dists.client}/js`);
 
   glob.sync(path.resolve(`${buildPath}/pa*.js`)).forEach(item => {
     if (!/(paReactDll)/.test(item)) {

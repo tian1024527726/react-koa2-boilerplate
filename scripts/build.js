@@ -15,34 +15,27 @@ const config = require('../config')
 const copyModules = require('./tools/copy-modules')
 const copyDlls = require('./tools/copy-dlls')
 const webpackConfig = require('./webpack/webpack.build.conf')
-const utils = require('./tools/utils')
-const project = utils.argv.project
-const site = utils.argv.site
 
 const spinner = ora('building for production...')
 spinner.start()
 
 
 //判断是否存在配置json文件
-const pfsPath = path.resolve(`buildConfig/target/${project}/index.js`);
-const isExistPfs = fs.existsSync(pfsPath);
 const ProgressPlugin = require('webpack/lib/ProgressPlugin')
 //创建编译器函数
-const creactCompiler = async (_site) => {
-  const clientPath = path.resolve(`dist/${_site}/${project}/client`);
-  const serverPath = path.resolve(`dist/${_site}/${project}/server`);
-  rimraf.sync(`dist/${_site}/${project}`);
+const creactCompiler = async () => {
+  rimraf.sync('dist');
   const clientWebpackConfig = merge(webpackConfig[0], {
-    output: { path: clientPath },
     resolve: {
       alias: {
-        '@site': path.resolve(`buildConfig/site/${_site}`),
+        //设置路径别名
       }
     },
   });
-  // const serverWebpackConfig = merge(webpackConfig[1],{output:{path:serverPath}});
-  // const compiler = webpack([clientWebpackConfig,serverWebpackConfig]);
-  const compiler = webpack([clientWebpackConfig]);
+  const serverWebpackConfig = merge(webpackConfig[1],{
+
+  });
+  const compiler = webpack([clientWebpackConfig,serverWebpackConfig]);
   compiler.apply(new ProgressPlugin());
 
   return await new Promise((resolve, reject) => {
@@ -62,25 +55,10 @@ const creactCompiler = async (_site) => {
 
 //打包编译函数
 async function Run() {
-  if (isExistPfs && site == true) {
-    const pfsFile = fs.readFileSync(pfsPath, 'utf-8');
-    const pfsContent = JSON.parse(pfsFile).site;
-    for (const site of pfsContent) {
-      await creactCompiler(site);
-      copyDlls(config,site);
-      // copyModules(config,site)
-      // cp('-R', config.paths.bin, path.resolve(`dist/${site}/${project}`))
-    }
-  } else if (!isExistPfs && site == true) {
-    console.error(`Something wrong for site!!!!
-                `);
-    process.exit(0);
-  } else {
-    await creactCompiler(site);
-    copyDlls(config, site);
-    // copyModules(config,site)
-    // cp('-R', config.paths.bin, path.resolve(`dist/${site}/${project}`))
-  }
+  await creactCompiler();
+  copyDlls(config);
+  copyModules(config);
+  cp('-R', config.paths.bin, path.resolve(`dist/${config.build.name}/`))
   spinner.stop()
   console.log(chalk.cyan(`  Build complete. Project: ${config.build.name}\n`))
   console.log(chalk.yellow(

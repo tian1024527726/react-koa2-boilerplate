@@ -17,7 +17,6 @@ const proxyMiddleware = require('http-proxy-middleware')  //代理模块
 const chafMiddleware = require('connect-history-api-fallback')  //api重定向模块，在使用history路由使用时，一直定向到index.html
 const webpackConfig = require('./webpack/webpack.dev.conf')
 const utils = require('./tools/utils')
-const project = utils.argv.project
 const staticroot = path.resolve('')
 
 // 设置端口

@@ -10,8 +10,6 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin') //友好的错误提示，会显示具体的错误位置
 const config = require('../../config')
 const utils = require('../tools/utils')
-const project = utils.argv.project
-const site = utils.argv.site
 const dllConfig = config.dlls.dllPlugin.defaults;
 
 const plugin = [
@@ -19,15 +17,10 @@ const plugin = [
   new webpack.HotModuleReplacementPlugin(),
   //webpack的id本来是1,2,3...数字，将其替换成模块名路径，方便开发时调试
   new webpack.NamedModulesPlugin(),
-  // new ExtractTextPlugin({
-  //     filename: 'stylesheet/[name].[chunkhash:8].css',
-  //     disable: false,
-  //     allChunks: true,
-  // }),
   new HtmlWebpackPlugin({
     filename: 'index.html',
     inject: true,
-    template: `${project}/client/index.html`,
+    template: 'src/client/index.html',
     favicon: 'favicon.ico'
   }),
   new FriendlyErrorsPlugin()
@@ -87,7 +80,7 @@ function dependencyHandlers() {
 const clientWebpackConfig = merge(baseWebpackConfig.client, {
   name: 'client',
   entry: {
-    index: ['./scripts/tools/dev-client', `./${project}/client/index.js`]
+    index: ['./scripts/tools/dev-client', './src/client/index.js']
   },
   output: {
     chunkFilename: 'js/[name].chunk.js'
@@ -97,7 +90,7 @@ const clientWebpackConfig = merge(baseWebpackConfig.client, {
   },
   resolve: {
     alias: {
-      '@site': path.resolve(`buildConfig/site/${site}`),
+       //设置路径别名
     }
   },
   plugins: dependencyHandlers().concat(plugin)

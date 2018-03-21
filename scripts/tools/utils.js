@@ -1,8 +1,5 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const argv = require('minimist')(process.argv.slice(2))
-const project = argv['project'] || 'src'
-const site = argv['site']
 
 
 
@@ -65,5 +62,3 @@ exports.styleLoaders = options => {
   }
   return output
 }
-
-exports.argv = { project, site }

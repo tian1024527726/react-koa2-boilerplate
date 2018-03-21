@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { List, Cell } from 'yzt-rui';
+// import { List, Cell } from 'yzt-rui';
 
 class ProtocolPage extends React.Component {
   constructor(props){
@@ -25,10 +25,10 @@ class ProtocolPage extends React.Component {
     return (
       <div className={FF_Protocol}>
         {divide}
-        <List
+        {/* <List
           renderItem={<Cell/>}
           dataSource={dataSource}
-        />
+        /> */}
       </div>
     )
   }

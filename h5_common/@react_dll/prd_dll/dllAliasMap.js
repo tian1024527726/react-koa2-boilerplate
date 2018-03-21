@@ -1,0 +1,1 @@
+module.exports={"paChartDll":"./js/paChartDll_1.0.0.dll.js","paScrollDll":"./js/paScrollDll_1.0.0.dll.js"}

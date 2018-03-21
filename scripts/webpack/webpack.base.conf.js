@@ -4,13 +4,11 @@ const HappyPack = require('happypack') //提升构建速度
 const ExtractTextPlugin = require('extract-text-webpack-plugin') //抽离css
 const config = require('../../config')
 const utils = require('../tools/utils')
-const project = utils.argv.project
-const site = utils.argv.site
 const dllConfig = config.dlls.dllPlugin.defaults;
 const externals = _externals()
 //server代码中不需要打包的模块
 function _externals() {
-  let dependencies = require(`../../${project}/server/package.json`).dependencies
+  let dependencies = require(`../../src/server/package.json`).dependencies
   let externals = {}
   for (let dep in dependencies) {
     externals[dep] = 'commonjs ' + dep
@@ -22,7 +20,7 @@ const clientWebpackConfig = {
   name: 'client',
   //文件打包输出设置
   output: {
-    path: config.paths.output,
+    path: config.dists.client,
     publicPath: config.paths.publicPath,
     filename: '[name].js'
   },
@@ -46,22 +44,21 @@ const clientWebpackConfig = {
   ],
   resolve: {
     //设置模块导入规则，import/require时会直接在这些目录找文件
-    modules: [path.resolve(`${project}/client/components`), path.resolve('h5_commonr/components'), 'node_modules'],
+    modules: [path.resolve(`src/client/components`), path.resolve('h5_common/components'), 'node_modules'],
     //import导入时省略后缀
     extensions: ['.js', '.jsx', '.react.js', '.css', '.json'],
     //import导入时别名
     alias: {
-      '@client': path.resolve(`${project}/client`),
-      '@h5_commonr': path.resolve('h5_commonr'),
-      '@noAnyDoor': path.resolve(`h5_commonr/noAnyDoor`),
-      '@styles': path.resolve(`${project}/client/styles/pages`),
-      '@utils': path.resolve(`${project}/client/utils`),
-      '@images': path.resolve(`${project}/client/images`),
-      '@actions': path.resolve(`${project}/client/redux/actions`),
-      '@config': path.resolve(`${project}/client/config`),
-      '@business': path.resolve(`${project}/client/business`),
+      '@client': path.resolve(`src/client`),
+      '@h5_commonr': path.resolve('h5_common'),
+      '@styles': path.resolve(`src/client/styles/pages`),
+      '@utils': path.resolve(`src/client/utils`),
+      '@images': path.resolve(`src/client/images`),
+      '@actions': path.resolve(`src/client/redux/actions`),
+      '@config': path.resolve(`src/client/config`),
+      '@business': path.resolve(`src/client/business`),
       '@dllAliasMap': path.resolve(`${dllConfig.buildPath}/dllAliasMap`),
-      '@importDll': path.resolve('h5_commonr/utils/importDll')
+      '@importDll': path.resolve('h5_common/utils/importDll')
     }
   },
   module: {
@@ -119,9 +116,9 @@ const serverWebpackConfig = {
   name: 'server',
   devtool: false,
   //编译入口
-  entry: [`./${project}/server/index.js`],
+  entry: [`./src/server/index.js`],
   output: {
-    path: config.paths.output,
+    path: config.dists.server,
     publicPath: config.paths.publicPath,
     filename: '[name].js'
   },

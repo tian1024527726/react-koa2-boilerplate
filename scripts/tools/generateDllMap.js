@@ -9,7 +9,7 @@ module.exports = (outputPath,err) => {
       }
     }).forEach(item => {
       let key = item.split('_')[0];
-      dllAliasMap[key] = `h5_commonr/@react_dll/dev_dll/${item}`;
+      dllAliasMap[key] = `h5_common/@react_dll/dev_dll/${item}`;
     })
     file = `module.exports=${JSON.stringify(dllAliasMap)}`
     fs.writeFileSync(`${outputPath}/dllAliasMap.js`,file,'utf8')

@@ -2,23 +2,21 @@ const path = require('path')
 const proxyTable = require('./proxy.conf')
 const pm2Config = require('./pm2.conf')
 const utils = require('../scripts/tools/utils')
-const project = utils.argv.project
-const site = utils.argv.site
-const srcPath = path.resolve(project)
-const distPath = path.resolve(`dist/${site}/${project}`)
+const srcPath = path.resolve('src')
+const distPath = path.resolve(`dist/${pm2Config.name}`)
 
 
 module.exports = {
   build: {
     index: path.resolve(distPath, 'client/index.html'),
-    name: project,
+    name: pm2Config.name,
     includeModules: true,
     productionSourceMap: false,
     productionGzip: false,
     productionGzipExtensions: ['js', 'css']
   },
   dev: {
-    port: 3000,
+    port: 3001,
     noInfo: true,
     autoOpenBrowser: true,
     registerApi: true,
