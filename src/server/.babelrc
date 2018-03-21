@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }]
+  ],
+  //编译装饰符@
+  "plugins": [ "transform-decorators-legacy" ]
+}

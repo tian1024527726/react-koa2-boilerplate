@@ -1,0 +1,85 @@
+<script src="./network.js" type="text/javascript"></script>
+<script>
+  var noop = function () { };
+  var requestError = function (e) {
+    console.log(e)
+  };
+
+  var callMaam = {
+
+    init: function () {
+
+    },
+
+    request: function (options) {
+
+      var CFNetwork = window.CFNetwork;
+
+      var _extends = Object.assign || function (target) {
+        for (var i = 1; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      };
+      var optionsData = _extends({}, options.data);
+      var deleteArr = ['deviceId', 'deviceID', 'deviceType', 'osVersion', 'sdkVersion',
+        'appId', 'appVersion', 'pluginId'
+      ];
+      for (var i = 0; i < deleteArr.length; i++) {
+        delete optionsData[deleteArr[i]];
+      }
+
+      var params = _extends({}, optionsData, {
+        method: options.url
+      });
+
+      console.log('现在请求的接口是：', params.method);
+      console.log('请求参数是：', params);
+      CFNetwork.post('', params).then(
+        function (data) {
+          // console.log(data);
+          options.success(data);
+        }
+      );
+
+      // options = options || {};
+      // var oldSuccessHandler = options.success || noop,
+      //     oldErrorHandler = options.error || requestError;
+      //
+      // options.error = function() {
+      //     oldErrorHandler.apply(this, arguments);
+      // };
+      //
+      // options.success = function() {
+      //     oldSuccessHandler.apply(this, arguments);
+      // };
+      //
+      // $.ajax(options);
+    }
+
+
+  };
+
+  callMaam.request({
+    type: 'post',
+    url: 'life.carLife.getCarDetail',
+    timeout: 20000,
+    data: {},
+    dataType: 'json',
+    success: function (res) {
+      console.log(res);
+
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+      console.log(XMLHttpRequest);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+  });
+
+</script>

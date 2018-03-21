@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+	<meta name="format-detection" content="telephone=no, email=no">
+
+	<!-- 打开dns预热 -->
+	<meta http-equiv='x-dns-prefetch-control' content='on'>
+	<!-- 网关地址 -->
+	<link rel='dns-prefetch' href='https://test-kitgp-dmzstg2.pingan.com.cn'>
+	<link rel='dns-prefetch' href='https://test-kitgp-dmzstg1.pingan.com.cn'>
+	<link rel='dns-prefetch' href='https://kitgp.pingan.com.cn'>
+
+	<!-- pps上传图片地址 -->
+	<link rel='dns-prefetch' href='https://test-toa-pps-stg.pingan.com.cn'>
+	<link rel='dns-prefetch' href='https://toa-pps.pingan.com.cn'>
+
+	<!-- 前端服务器，这个好像没啥用，本项目就是这个地址 -->
+	<link rel='dns-prefetch' href='https://h0-stg.yztcdn.com'>
+	<link rel='dns-prefetch' href='https://h0.yztcdn.com'>
+
+	<!-- 静态资源预加载 -->
+	<!-- js依赖包 -->
+	<!-- <% if(htmlWebpackPlugin.options.dll){ %>
+	<link rel="preload" href="<%= htmlWebpackPlugin.options.dll %>" as="script">
+	<%}%>
+	<% if(htmlWebpackPlugin.files.chunks.vendor && htmlWebpackPlugin.files.chunks.vendor.entry ){ %>
+	<link rel="preload" href="<%= htmlWebpackPlugin.files.chunks.vendor.entry %>" as="script">
+	<%}%> -->
+
+	<!-- <link rel="preload" href="<%= htmlWebpackPlugin.files.chunks.index.entry %>" as="script"> -->
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<title>开通壹起马上花</title>
+	<script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min(640, Math.max(document.documentElement.clientWidth, 320)) / 320 * 14 + 'px'})()</script>
+</head>
+<body>
+<div id="app"></div>
+
+</body>
+</html>

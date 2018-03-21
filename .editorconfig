@@ -1,0 +1,15 @@
+root = true
+
+[*]
+# 编码字符集
+charset = utf-8
+#缩进类型是空格
+indent_style = space
+#缩进大小是两个字符
+indent_size = 2
+#enter键换行
+end_of_line = lf
+#文件以一个空白行结尾
+insert_final_newline = true
+#将行尾空格自动删除
+trim_trailing_whitespace = true
