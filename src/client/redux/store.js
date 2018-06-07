@@ -1,7 +1,7 @@
 import {createStore,applyMiddleware,compose,combineReducers} from 'redux'
 import {routerMiddleware,routerReducer} from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
-import reducers from './reducers/couter'
+import reducers from './index'
 
 let DevToolsInstrument;
 

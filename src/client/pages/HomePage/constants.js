@@ -1,0 +1,1 @@
+export const INSURANCE_DETAIL = 'INSURANCE_DETAIL';

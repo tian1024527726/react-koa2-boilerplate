@@ -9,7 +9,7 @@ module.exports = (config) => {
   const buildPath = config.dlls.dllPlugin.defaults.buildPath;
   const distPath = path.resolve(`${config.dists.client}/js`);
 
-  glob.sync(path.resolve(`${buildPath}/pa*.js`)).forEach(item => {
+  glob.sync(path.resolve(`${buildPath}/*Dll*.js`)).forEach(item => {
     if (!/(paReactDll)/.test(item)) {
       cp('-R', item, distPath)
     }

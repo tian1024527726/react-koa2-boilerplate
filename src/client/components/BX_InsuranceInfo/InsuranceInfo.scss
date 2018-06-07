@@ -1,0 +1,69 @@
+.BX_InsuranceInfo{
+  background-color: #FFF;
+  .list{
+    position: relative;
+    border-top: 1px solid #E5E5E5;
+    &:before{
+      content: '';
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      height: 2.5rem;
+      border-left: 2px solid #0677DA;
+    }
+    .list-header{
+      padding: 0;
+      >div{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 2.5rem;
+        padding-left: 1.125rem;
+        color: #4A4A4A ;
+        .icon-arrow{
+          display: flex;
+          align-items: center;
+          height: 100%;
+          padding:0 1rem;
+        }
+      }
+    }
+    .list-body{
+      border-top: 0;
+      .list-item{
+        border-bottom: 0;
+        border-top: 1px solid #E5E5E5;
+      }
+    }
+  }
+  .input{
+    .input-group-add{
+      display: inline-block;
+      width: 6rem;
+    }
+    .input-content,
+    .input-placeholder{
+      padding-left: 0;
+    }
+  }
+  .effective-date-input{
+    .input-content,.input-placeholder{
+      color: #0677DA;
+      padding-left: 0;
+    }
+  }
+  .guarantee-period{
+    .cell-left{
+      width: 6rem;
+      font-size: 1rem;
+      color: #4A4A4A;
+    }
+    .cell-center{
+      font-size: 1rem;
+      color: #777777;
+      padding-left: 0;
+    }
+  }
+}

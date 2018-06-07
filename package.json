@@ -1,14 +1,14 @@
 {
-  "name": "react-koa-boilerplate",
+  "name": "react-koa2-boilerplate",
   "version": "1.0.0",
   "description": "React & Koa isomorphic boilerplate",
-  "author": "yyb",
+  "author": "yanyibo",
   "scripts": {
-    "analyze": "cross-env NODE_ENV=production node scripts/build.js --analyze --site",
-    "start": "cross-env NODE_ENV=development node scripts/dev-server.js --site",
-    "start:prd": "cross-env NODE_ENV=production node scripts/prd-server.js --site",
-    "build:test": "cross-env NODE_ENV=testing node scripts/build.js --site",
-    "build:prd": "cross-env NODE_ENV=production node scripts/build.js --site",
+    "analyze": "cross-env NODE_ENV=production node scripts/build.js --analyze",
+    "start": "cross-env NODE_ENV=development node scripts/dev-server.js",
+    "start:prd": "cross-env NODE_ENV=production node scripts/prd-server.js",
+    "build:test": "cross-env NODE_ENV=testing node scripts/build.js",
+    "build:prd": "cross-env NODE_ENV=production node scripts/build.js",
     "build:dll": "cross-env node scripts/build_dll.js",
     "clean": "rimraf dist/*"
   },
@@ -19,6 +19,7 @@
     "classnames": "^2.2.5",
     "cross-env": "^5.1.3",
     "echarts": "^4.0.4",
+    "fastclick": "^1.0.6",
     "fetch-jsonp": "^1.1.3",
     "highcharts": "^6.0.7",
     "history": "^4.7.2",
@@ -51,7 +52,7 @@
     "redux-thunk": "^2.2.0",
     "swiper": "^3.4.2",
     "whatwg-fetch": "^2.0.4",
-    "yzt-rui": "^0.1.6"
+    "yzt-rui": "^0.3.8"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.1.2",

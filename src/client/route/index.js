@@ -5,29 +5,23 @@ module.exports = {
   component: require('../app/App'),
   childRoutes: [
     {
-      path: 'One',
-      component: require('../pages/one/index'),
-    }, {
-      path: 'Two',
+      path: 'HomePage',
       getComponent(location, cb) {
-        require.ensure([],(require) => {
-          Promise.all([importDll('paScrollDll')]).then(function(){
-            cb(null, require('../pages/two/index'));
+        require.ensure([], (require) => {
+          Promise.all([]).then(function () {
+            cb(null, require('../pages/HomePage'));
           })
-        }, 'Two')
-      }
-    }, {
-      path: 'Three',
-      getComponent(location, cb) {
-        require.ensure([],(require) => {
-          Promise.all([importDll('paChartDll')]).then(function(){
-            cb(null, require('../pages/three/index'));
-          })
-        }, 'Three')
+        }, 'HomePage')
       }
     }
   ],
   indexRoute: {
-    component: require('../pages/one/index'),
+    getComponent(location, cb) {
+      require.ensure([], (require) => {
+        Promise.all([]).then(function () {
+          cb(null, require('../pages/HomePage'));
+        })
+      }, 'HomePage')
+    }
   }
-}
+};

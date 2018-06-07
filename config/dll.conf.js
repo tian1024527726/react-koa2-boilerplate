@@ -22,7 +22,8 @@ const reactDll = {
         'react-redux',
         'redux',
         'react-router',
-        'classnames'
+        'classnames',
+        'better-scroll'
       ],
       //针对开发本地调试用devPath，针对各种环境打包时用buildPath
       devPath: 'h5_common/@react_dll/dev_dll',
@@ -36,9 +37,8 @@ const reactDll = {
       const include = reactDll.dllPlugin.defaults.include;
       const includeDependencies = uniq([...include, ...dependencyNames]);
       return {
-        paReactDll: pullAll(includeDependencies, exclude),
-        paScrollDll: ['better-scroll'],
-        paChartDll: ['highcharts']
+        reactDll: pullAll(includeDependencies, exclude),
+        chartDll: ['highcharts']
       };
     },
   },

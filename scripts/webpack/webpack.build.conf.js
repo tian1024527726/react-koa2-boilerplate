@@ -16,18 +16,18 @@ const plugins = [
   new webpack.LoaderOptionsPlugin({
     minimize: true
   }),
-  // new webpack.optimize.UglifyJsPlugin({
-  //     'screw-ie8': true,
-  //     sourceMap: true,
-  //     compress: {
-  //         warnings: false,
-  //         drop_debugger: true,
-  //         drop_console: true
-  //     },
-  //     output: {
-  //         comments: false
-  //     }
-  // }),
+  new webpack.optimize.UglifyJsPlugin({
+      'screw-ie8': true,
+      sourceMap: true,
+      compress: {
+          warnings: false,
+          drop_debugger: true,
+          drop_console: true
+      },
+      output: {
+          comments: false
+      }
+  }),
   // new webpack.optimize.ModuleConcatenationPlugin(),
   //dll预构建依赖包，commonchunk对公用模块打包
   new webpack.optimize.CommonsChunkPlugin({
@@ -37,7 +37,7 @@ const plugins = [
     deepChildren: true,
   }),
   new ExtractTextPlugin({
-    filename: 'stylesheet/[name].[chunkhash:8].css',
+    filename: 'stylesheet/[name].css?[chunkhash:8]',
     disable: false,
     allChunks: true,
   }),
@@ -63,17 +63,17 @@ const plugins = [
       minifyURLs: true,
     },
     inject: true,
-    hash: true
+    //hash: true
   }),
 ];
-const manifests = glob.sync(path.resolve(`${dllPath}/pa*Dll.json`));
+const manifests = glob.sync(path.resolve(`${dllPath}/*Dll.json`));
 manifests.forEach(item => {
   plugins.push(new webpack.DllReferencePlugin({
     context: process.cwd(),
     manifest: item,
   }))
 })
-glob.sync(`${dllConfig.buildPath}/paReactDll*.dll.js`).forEach((dllPath) => {
+glob.sync(`${dllConfig.buildPath}/reactDll*.dll.js`).forEach((dllPath) => {
   plugins.push(
     new AddAssetHtmlPlugin({
       filepath: dllPath,
@@ -104,8 +104,8 @@ const clientWebpackConfig = merge(baseWebpackConfig.client, {
   },
   output: {
     publicPath: config.dists.publicPath,
-    filename: 'js/[name].[chunkhash:8].js',
-    chunkFilename: 'js/[name].[chunkhash:8].chunk.js'
+    filename: 'js/[name].js?[chunkhash:8]',
+    chunkFilename: 'js/[name].chunk.js?[chunkhash:8]'
   },
   module: {
     rules: utils.styleLoaders({

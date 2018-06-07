@@ -52,11 +52,6 @@ const clientWebpackConfig = {
       '@client': path.resolve(`src/client`),
       '@h5_commonr': path.resolve('h5_common'),
       '@styles': path.resolve(`src/client/styles/pages`),
-      '@utils': path.resolve(`src/client/utils`),
-      '@images': path.resolve(`src/client/images`),
-      '@actions': path.resolve(`src/client/redux/actions`),
-      '@config': path.resolve(`src/client/config`),
-      '@business': path.resolve(`src/client/business`),
       '@dllAliasMap': path.resolve(`${dllConfig.buildPath}/dllAliasMap`),
       '@importDll': path.resolve('h5_common/utils/importDll')
     }

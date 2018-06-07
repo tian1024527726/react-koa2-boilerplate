@@ -26,7 +26,7 @@ const plugin = [
   new FriendlyErrorsPlugin()
 ]
 if (dllConfig) {
-  glob.sync(`${dllConfig.devPath}/paReactDll*.dll.js`).forEach((dllPath) => {
+  glob.sync(`${dllConfig.devPath}/reactDll*.dll.js`).forEach((dllPath) => {
     plugin.push(
       new AddAssetHtmlPlugin({
         filepath: dllPath,
@@ -59,7 +59,7 @@ function dependencyHandlers() {
    */
   if (!dllConfig.dlls) {
     const plugins = [];
-    const manifests = glob.sync(path.resolve(`${dllPath}/pa*Dll.json`))
+    const manifests = glob.sync(path.resolve(`${dllPath}/*Dll.json`))
 
     console.log(manifests)
     if (!manifests.length) {

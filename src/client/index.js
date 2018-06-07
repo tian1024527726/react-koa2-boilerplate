@@ -1,3 +1,9 @@
+import Fastclick from "fastclick";
+Fastclick.attach(document.body);
+
+import promise from 'es6-promise'
+promise.polyfill();
+import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { syncHistoryWithStore } from 'react-router-redux';
