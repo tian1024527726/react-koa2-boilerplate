@@ -52,7 +52,7 @@
     "redux-thunk": "^2.2.0",
     "swiper": "^3.4.2",
     "whatwg-fetch": "^2.0.4",
-    "yzt-rui": "^0.3.8"
+    "yzt-rui": "^0.4.0"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.1.2",

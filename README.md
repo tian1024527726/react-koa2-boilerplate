@@ -4,7 +4,7 @@ This is a boilerplate for developing with both React.js and Koa2. Production rea
 
 使用React.js和Koa2同构开发的样板工程
 
------- 
+------
 
 ## Dev & Release
 
@@ -12,14 +12,17 @@ This is a boilerplate for developing with both React.js and Koa2. Production rea
 # install dependencies
 npm install | yarn install
 
+#build dll
+yarn build:dll
+
 # start development with both ends hot-reload
-npm start
+yarn start
 
 # build both ends
-npm run build | npm run build:testing
+yarn build:test | yarn build:prd
 
 # compress the built project for deployment
-npm run package
+yarn package
 
 # lauch application on linux server
 # cd YOURPROJECT/bin
