@@ -1,0 +1,5 @@
+export const INSURANCE_DETAIL = 'INSURANCE_DETAIL';
+export const PKGDISPLAY_DETAIL = 'PKGDISPLAY_DETAIL';
+export const FACTOR_INFO = 'FACTOR_INFO';
+export const PREMUIM_INFO = 'PREMUIM_INFO';
+export const IS_LOADED = 'IS_LOADED';

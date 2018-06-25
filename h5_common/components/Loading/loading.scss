@@ -1,0 +1,41 @@
+.Loading{
+  &-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 4rem;
+    height: 4rem;
+    >div{
+      width: 1.125rem;
+      height: 1.125rem;
+      background-color: #FFF;
+      border-radius: 100%;
+      display: inline-block;
+      animation: bouncedelay 1.4s infinite ease-in-out both;
+    }
+    .bounce1{
+      animation-delay: -0.32s;
+    }
+    .bounce2{
+      animation-delay: -0.16s;
+    }
+  }
+  &-mask{
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0,.3);
+  }
+}
+
+
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+    transform: scale(1.0);
+  }
+}

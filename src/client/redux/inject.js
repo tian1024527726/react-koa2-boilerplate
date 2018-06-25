@@ -10,13 +10,29 @@ import { getType } from '@client/utils'
  * @param {*} src  state或dispacth
  * @param {*} type 类型
  */
+
+let ActionsCache = new Map();
+
 function creatRedux(data, src, type) {
   let res = {};
   data.map((item, index) => {
     if (type === 'state') {
-      res[item] = src.root[item]
+      if (allStates[item]) {
+        res[item] = src.root[item]
+      } else {
+        console.error(`没有找到可绑定的state---------${item}`)
+      }
     } else {
-      res[item] = bindActionCreators(allActions[item], src)
+      if (allActions[item]) {
+        if(ActionsCache.has(allActions[item])){
+          res[item] = ActionsCache.get(allActions[item])
+        }else{
+          ActionsCache.set(allActions[item],bindActionCreators(allActions[item], src));
+          res[item] = bindActionCreators(allActions[item], src)
+        }
+      } else {
+        console.error(`没有找到可绑定的action---------${item}`)
+      }
     }
   })
   return res;
@@ -37,24 +53,20 @@ export default function (...options) {
     return true;
   })
   return function (component) {
-    if (!checkArgs) return;
+    if (!checkArgs) return ;
     //将所有reducer和action的key转成一个长字符串
-    const allString = [...Object.keys(allActions), ...Object.keys(allStates)].join('|');
+    const allString = [...Object.keys(allActions),...Object.keys(allStates)].join('|');
     // 过滤处理state
     function filterState() {
       let res = [];
       options.map((item, index) => {
         let reg = new RegExp(item, 'i');
-        if (allString.match(reg)) {
-          res.push(allString.match(reg)[0])
-        } else {
-          console.error(`没有找到可绑定的state---------${item}`);
-        }
+        if (allString.match(reg)) res.push(allString.match(reg)[0])
       })
       if (res.length) {
         return res;
       } else {
-        return [];
+        return null;
       }
     }
     // 过滤处理action
@@ -62,28 +74,24 @@ export default function (...options) {
       let res = [];
       options.map((item, index) => {
         let reg = new RegExp(item, 'i');
-        if (allString.match(reg)) {
-          res.push(`${allString.match(reg)[0]}Action`)
-        } else {
-          console.error(`没有找到可绑定的action---------${item}`)
-        }
+        if (allString.match(reg)) res.push(`${allString.match(reg)[0]}Action`)
       })
       if (res.length) {
         return res;
       } else {
-        return [];
+        return null;
       }
     }
     const mapState = state => {
       const baseStates = filterState();
       const enhanceStates = creatRedux(baseStates, state, 'state');
-      return enhanceStates;
+      return enhanceStates || {};
     };
 
     const mapDispatch = dispatch => {
       const baseActions = filterAction();
       const enhanceActions = creatRedux(baseActions, dispatch);
-      return enhanceActions;
+      return enhanceActions || {};
     };
 
     return connect(mapState, mapDispatch)(component);

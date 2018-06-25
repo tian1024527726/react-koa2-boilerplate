@@ -13,15 +13,24 @@ module.exports = {
           })
         }, 'HomePage')
       }
-    }
+    },{
+      path: 'DetailPage',
+      getComponent(location, cb) {
+        require.ensure([], (require) => {
+          Promise.all([]).then(function () {
+            cb(null, require('../pages/DetailPage'));
+          })
+        }, 'DetailPage')
+      }
+    },
   ],
   indexRoute: {
     getComponent(location, cb) {
       require.ensure([], (require) => {
         Promise.all([]).then(function () {
-          cb(null, require('../pages/HomePage'));
+          cb(null, require('../pages/DetailPage'));
         })
-      }, 'HomePage')
+      }, 'DetailPage')
     }
   }
 };

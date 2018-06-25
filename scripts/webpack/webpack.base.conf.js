@@ -25,7 +25,7 @@ const clientWebpackConfig = {
     filename: '[name].js'
   },
   //调试工具,开发环境开启eval-source-map,生产构建时不开启
-  // devtool: process.env.NODE_ENV === 'production' ? false : '#eval-source-map',
+  devtool: (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'testing') ? false : '#eval-source-map',
   plugins: [
     //webpack编译过程中设置全局变量process.env
     new webpack.DefinePlugin({

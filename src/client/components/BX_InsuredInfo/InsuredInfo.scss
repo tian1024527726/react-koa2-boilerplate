@@ -1,40 +1,38 @@
 .BX_InsuredInfo{
   background-color: #FFF;
-  .list{
-    position: relative;
-    border-top: 1px solid #E5E5E5;
-    &:before{
-      content: '';
-      position: absolute;
-      z-index: 10;
-      top: 0;
-      left: 0;
-      height: 2.5rem;
-      border-left: 2px solid #0677DA;
-    }
-    .list-header{
-      padding: 0;
-      >div{
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  &.is-primary{
+    .list{
+      position: relative;
+      &:before{
+        content: '';
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
         height: 2.5rem;
-        padding-left: 1.125rem;
-        color: #4A4A4A ;
-        .icon-arrow{
-          display: flex;
-          align-items: center;
-          height: 100%;
-          padding:0 1rem;
-        }
+        border-left: 2px solid blue;
       }
-    }
-    .list-body{
-      border-top: 0;
-      .list-item{
-        border-bottom: 0;
-        border-top: 1px solid #E5E5E5;
+      .list-header{
+        padding: 0;
+        >div{
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 2.5rem;
+          padding-left: 1.125rem;
+          color: #4A4A4A ;
+          .icon-arrow{
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding:0 1rem;
+          }
+          .error_msg{
+            color:#C23934;
+            padding-right: 1rem;
+          }
+        }
       }
     }
   }

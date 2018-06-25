@@ -1,4 +1,4 @@
-import BX_InsuredInfo from './InsuredInfo'
-import './InsuredInfo.scss'
+import BX_InsuredInfo from './insuredInfo'
+import './insuredInfo.scss'
 
 export default BX_InsuredInfo

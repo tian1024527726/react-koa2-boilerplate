@@ -1,0 +1,38 @@
+.BX_InsurancePlan{
+  background-color: #FFFFFF;
+  .title{
+    height: 2.5rem;
+    padding-top: .875rem;
+    font-size: .875rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: blue;
+  }
+  .content{
+    padding: 1rem;
+    .little_msg{
+      >div{
+        display: flex;
+        justify-content: space-between;
+        &:not(:last-child){
+          padding-bottom: 1rem;
+        }
+        padding-bottom: .5rem;
+        .r_text{
+          &:not(:last-child){
+            padding-bottom: .4rem;
+          }
+          text-align: right;
+        }
+      }
+    }
+    .detail_msg{
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  }
+}

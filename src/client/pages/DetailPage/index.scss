@@ -1,0 +1,21 @@
+@import "~@client/styles/mixin.scss";
+.InsuranceDetailPage {
+  padding-bottom: 3.375rem;
+  .insuranceDes{
+    padding:1rem;
+    background-color:#FFF;
+  }
+  .insuranceServer{
+    width: 100%;
+    height: 7rem;
+    background-color:#FFF;
+    display: flex;
+    >div{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
