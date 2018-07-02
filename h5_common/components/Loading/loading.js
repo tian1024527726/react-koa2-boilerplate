@@ -18,7 +18,7 @@ class Loading extends React.Component {
   }
 
   static show = () => {
-    Toast.show(LoadingIcon, 2)
+    Toast.loading(LoadingIcon)
     document.body.style.overflow = 'hidden';
 
   }

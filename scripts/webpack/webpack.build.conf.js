@@ -8,6 +8,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin') //压缩css
+//压缩大的数据时会报错
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const config = require('../../config')
 const utils = require('../tools/utils')
 const dllConfig = config.dlls.dllPlugin.defaults;
@@ -16,17 +19,17 @@ const plugins = [
   new webpack.LoaderOptionsPlugin({
     minimize: true
   }),
-  new webpack.optimize.UglifyJsPlugin({
-      'screw-ie8': true,
-      sourceMap: true,
+  new ParallelUglifyPlugin({
+    uglifyJS: {
       compress: {
-          warnings: false,
-          drop_debugger: true,
-          drop_console: true
+        warnings: false,
+        drop_debugger: true,
+        drop_console: true
       },
       output: {
-          comments: false
+        comments: false
       }
+    }
   }),
   // new webpack.optimize.ModuleConcatenationPlugin(),
   //dll预构建依赖包，commonchunk对公用模块打包
@@ -41,11 +44,11 @@ const plugins = [
     disable: false,
     allChunks: true,
   }),
-  new OptimizeCSSPlugin({
-    cssProcessorOptions: {
-      safe: true
-    }
-  }),
+  // new OptimizeCSSPlugin({
+  //   cssProcessorOptions: {
+  //     safe: true
+  //   }
+  // }),
   new HtmlWebpackPlugin({
     template: 'src/client/index.html',
     //防止各site项目一样时，不生成html文件
