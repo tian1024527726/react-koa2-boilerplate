@@ -52,7 +52,7 @@
     "redux-thunk": "^2.2.0",
     "swiper": "^3.4.2",
     "whatwg-fetch": "^2.0.4",
-    "yzt-rui": "^0.4.4"
+    "yzt-rui": "^0.4.5"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.1.2",
@@ -115,11 +115,13 @@
     "semver": "^5.5.0",
     "shelljs": "^0.8.1",
     "style-loader": "^0.20.1",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dev-middleware": "^2.0.4",
     "webpack-hot-middleware": "^2.21.0",
+    "webpack-manifest-plugin": "^2.0.3",
     "webpack-merge": "^4.1.1",
     "webpack-parallel-uglify-plugin": "^1.1.0"
   },

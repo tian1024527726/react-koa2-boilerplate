@@ -187,6 +187,13 @@ export const getLocalData = (key) => {
   return window.localStorage[key];
 }
 /**
+ * 移除localStorage的数据
+ * @param {*} key
+ */
+export const removeLocalData = (key) => {
+  return window.localStorage.removeItem(key);
+}
+/**
  * 保存sessionStorage的数据
  * @param {*} key
  * @param {*} value
@@ -200,6 +207,13 @@ export const saveSessionData = (key, value) => {
  */
 export const getSessionData = (key) => {
   return window.sessionStorage[key];
+}
+/**
+ * 移除sessionStorage的数据
+ * @param {*} key
+ */
+export const removeSessionData = (key) => {
+  return window.sessionStorage.removeItem(key);
 }
 /**
  *

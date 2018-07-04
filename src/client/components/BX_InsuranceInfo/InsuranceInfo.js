@@ -44,7 +44,6 @@ class BX_InsuranceInfo extends React.Component {
 
     this.state = {
       wrapperVisible: props.visible,
-      effectiveDatePickerVisible: false,
       effectiveDatePlaceholder: '请选择',
       effectiveDateValue: '',
       data: props.data,
@@ -91,7 +90,7 @@ class BX_InsuranceInfo extends React.Component {
       className, visible, onOk, type
     } = this.props;
     const {
-      data, wrapperVisible, effectiveDatePickerVisible, effectiveDateValue, effectiveDateTime,
+      data, wrapperVisible, effectiveDateValue, effectiveDateTime,
       effectiveDatePlaceholder, guaranteeDateValue, minDate, maxDate
     } = this.state;
 
@@ -123,18 +122,17 @@ class BX_InsuranceInfo extends React.Component {
             />}
           />
           <DatePicker
-            visible={effectiveDatePickerVisible}
+            ref={node => this.dataPicker = node}
             title=''
             mode='date'
             minDate={minDate}
             maxDate={maxDate}
             currentDate={effectiveDateTime}
-            cancelBtn={{ text: '取消', onPress: (res) => { this.setState({ effectiveDatePickerVisible: false }) } }}
+            cancelBtn={{ text: '取消', onPress: (res) => { } }}
             confirmBtn={{
               text: '确认', onPress: (res) => {
                 const { data } = this.state;
                 this.setState({
-                  effectiveDatePickerVisible: false,
                   effectiveDateValue: res.value,
                   effectiveDateTime: res.time
                 })
@@ -152,7 +150,7 @@ class BX_InsuranceInfo extends React.Component {
                 value={effectiveDateValue}
                 suffix={<Icon type='arrow-right' size='s' style={{ color: '#C7C7CC' }} />}
               />}
-              onClick={() => { this.setState({ effectiveDatePickerVisible: true }) }}
+              onClick={() => { this.dataPicker.show() }}
             />
           </DatePicker>
           {effectiveDateValue && <ListItem
@@ -176,18 +174,17 @@ class BX_InsuranceInfo extends React.Component {
             />}
           />
           <DatePicker
-            visible={effectiveDatePickerVisible}
+            ref={node => this.dataPicker = node}
             title=''
             mode='date'
             minDate={minDate}
             maxDate={maxDate}
             currentDate={effectiveDateTime}
-            cancelBtn={{ text: '取消', onPress: (res) => { this.setState({ effectiveDatePickerVisible: false }) } }}
+            cancelBtn={{ text: '取消', onPress: (res) => {  }}}
             confirmBtn={{
               text: '确认', onPress: (res) => {
                 const { data } = this.state;
                 this.setState({
-                  effectiveDatePickerVisible: false,
                   effectiveDateValue: res.value,
                   effectiveDateTime: res.time
                 })
@@ -205,7 +202,7 @@ class BX_InsuranceInfo extends React.Component {
                 value={effectiveDateValue}
                 suffix={<Icon type='arrow-right' size='s' style={{ color: '#C7C7CC' }} />}
               />}
-              onClick={() => { this.setState({ effectiveDatePickerVisible: true }) }}
+              onClick={() => { this.dataPicker.show()}}
             />
           </DatePicker>
         </List>

@@ -42,7 +42,7 @@ const creactCompiler = async () => {
     compiler.run((err, stats) => {
       if (err) throw err
       process.stdout.write(stats.toString({
-        olors: true,
+        colors: true,
         modules: false,
         children: true,
         chunks: false,

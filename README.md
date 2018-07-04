@@ -10,7 +10,7 @@ This is a boilerplate for developing with both React.js and Koa2. Production rea
 
 ``` bash
 # install dependencies
-npm install | yarn install
+yarn install
 
 #build dll
 yarn build:dll

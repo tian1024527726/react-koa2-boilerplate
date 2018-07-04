@@ -32,7 +32,7 @@ class InsuranceDetailPage extends React.Component {
       Loading.show()
       let Pro1 = new Promise((resolve,reject) => setTimeout(resolve,3000))
       Promise.all([Pro1]).then(([Pro1]) => {
-        // Loading.hide()
+        Loading.hide()
         detailAction.triggerLoaded({loaded:true})
       })
     }
