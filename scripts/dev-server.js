@@ -66,31 +66,31 @@ app.use(hotMiddleware)
 
 app.use(koaMount('/', koaStatic(staticroot)))
 // 注册server的Api
-// if (config.dev.registerApi) {
-//   console.log(chalk.yellow('> Registering server Api... \n'))
-//   const registerApi = require(`../${project}/server/register`).default
+if (config.dev.registerApi) {
+  console.log(chalk.yellow('> Registering server Api... \n'))
+  const registerApi = require(`../src/server/register`).default
 
-//   const watcher = require('chokidar').watch(config.paths.server)
+  const watcher = require('chokidar').watch(config.paths.server)
 
-//   registerApi(app)
+  registerApi(app)
 
-//   watcher.on('ready', () => {
-//     watcher.on('all', (err, file) => {
-//       console.log(file, config.dev.hotApiRegex.test(file))
+  watcher.on('ready', () => {
+    watcher.on('all', (err, file) => {
+      console.log(file, config.dev.hotApiRegex.test(file))
 
-//       if (!config.dev.hotApiRegex.test(file)) {
-//         console.log(chalk.red('> Rebooting server... \n [Not implemented yet]'))
-//         // TBD
-//       } else {
-//         console.log(chalk.yellow('> Reloading hot modules of server... \n'))
-//         Object.keys(require.cache).forEach(id => {
-//           if (config.dev.hotApiRegex.test(id)) delete require.cache[id]
-//         })
-//         console.log(chalk.green('> Hot modules of server are reloaded... \n'))
-//       }
-//     })
-//   })
-// }
+      if (!config.dev.hotApiRegex.test(file)) {
+        console.log(chalk.red('> Rebooting server... \n [Not implemented yet]'))
+        // TBD
+      } else {
+        console.log(chalk.yellow('> Reloading hot modules of server... \n'))
+        Object.keys(require.cache).forEach(id => {
+          if (config.dev.hotApiRegex.test(id)) delete require.cache[id]
+        })
+        console.log(chalk.green('> Hot modules of server are reloaded... \n'))
+      }
+    })
+  })
+}
 
 // 开启服务
 const uri = 'http://localhost:' + port

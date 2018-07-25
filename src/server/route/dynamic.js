@@ -6,4 +6,8 @@ export default async (ctx, next) => {
   if (ctx.path.match(/^\/api\/trade\//)) {
     return await require('./trade').default.routes()(ctx, next)
   }
+
+  if (ctx.path.match(/^\/api\/wechat\//)) {
+    return await require('./wechat').default.routes()(ctx, next)
+  }
 }

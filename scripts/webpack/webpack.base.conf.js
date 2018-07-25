@@ -127,16 +127,16 @@ const serverWebpackConfig = {
   externals: externals,
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        include: config.paths.server,
-        exclude: /node_modules/,
-        enforce: 'pre',
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'eslint-loader',
+      //   include: config.paths.server,
+      //   exclude: /node_modules/,
+      //   enforce: 'pre',
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {
         test: /\.js$/,
         use: 'babel-loader',

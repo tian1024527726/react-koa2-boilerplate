@@ -12,6 +12,7 @@ const setNativeProperty = (target, key, value) => {
 
 export default class BaseController {
   constructor (name) {
+
     setNativeProperty(this, 'logger', getLogger(name))
 
     // setup lodash shortcuts

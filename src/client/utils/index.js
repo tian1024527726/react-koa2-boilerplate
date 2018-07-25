@@ -1,8 +1,6 @@
-import EnhanceAxios from './enhanceAxios.js';
 import './requestHandler';
 
 const _env = process.env.NODE_ENV;
-let IS_LOADING = false;
 
 /**
  * 将20180426的时间格式化为 ---2018-04-26---

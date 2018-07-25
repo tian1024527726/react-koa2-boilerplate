@@ -16,7 +16,7 @@ module.exports = {
     productionGzipExtensions: ['js', 'css']
   },
   dev: {
-    port: 3001,
+    port: 8080,
     noInfo: true,
     autoOpenBrowser: true,
     registerApi: true,

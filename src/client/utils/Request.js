@@ -5,13 +5,13 @@ const Axios = EnhanceAxios({ baseURL: '', beforeSend: showNativeLoading });
 const MockAxios = EnhanceAxios({ beforeSend: () => { console.log('将要发送请求') } })
 
 export const Request = (options, dispatch) => {
-  let { operationType, data, success, error, context, hideLoading } = options;
+  let { api, data, success, error, context, hideLoading } = options;
   /**
    * 请求mock数据的方式
    */
   if (__MOCK__) {
     return MockAxios
-      .get(`/mock/h5_yibao/${operationType}.json`)
+      .get(`/mock/${operationType}.json`)
       .then(res => { success && success(res.result); })
       .catch(err => Promise.reject(err));
   }

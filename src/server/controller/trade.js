@@ -16,6 +16,10 @@ class TradeController extends BaseController {
   async getTradeList (ctx) {
     return await ctx.success('Register in!', { content: ctx.request.body })
   }
+
+  test(){
+    return 'test'
+  }
 }
 
 export default TradeController

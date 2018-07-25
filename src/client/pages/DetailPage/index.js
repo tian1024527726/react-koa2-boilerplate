@@ -9,6 +9,10 @@ import BX_InsuranceInfo from 'BX_InsuranceInfo'
 import BX_InsuredInfo from 'BX_InsuredInfo'
 import BX_FooterButton from 'BX_FooterButton'
 import Loading from 'Loading';
+// import Axios from 'axios'
+// import fetchJsonp from 'fetch-jsonp'
+import EnhanceAxios from '@client/utils/enhanceAxios';
+const Axios = EnhanceAxios({ baseURL: '', beforeSend: ()=>{console.log('request begin')} });
 
 import { } from '@client/utils'
 import Inject from '../../redux/inject'
@@ -23,9 +27,38 @@ class InsuranceDetailPage extends React.Component {
   }
   componentWillMount() {
     window.scrollTo(0, 0);
+    const params = {};
+    location.href.split('?')[1] && location.href.slice(0,-2).split('?')[1].split('&').map(item => {
+      const key = item.split('=')[0];
+      const val = item.split('=')[1];
+      params[key] =  val;
+    })
+    if(!params.code){
+      window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx048542eb7b0de3b2&redirect_uri=http%3A%2F%2F172.18.17.83%3A8080%2Findex.html%2F%23%2F&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+    }else{
+
+    }
+    console.log(params)
   }
   componentDidMount() {
+    var config = {
+      wechat: {
+          appID:'wx048542eb7b0de3b2',
+          appsecret:'5b5dadf3c5b4ad5d06c07ac2a75a04e7',
+          token:'weixin'
+      }
+    }
+    var aapId = config.wechat.appID
+    var appSecret = config.wechat.appsecret
+    var token = config.wechat.token
     const { detailAction, detail } = this.props;
+    // Axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${aapId}&secret=${appSecret}`)
+    // .then((res)=>{
+    //   var access_token = res.access_token;
+    //   console.log(access_token)
+    // })
+    // Axios.get('/api/wechat/signature')
+
     if (detail.loaded) {
       return;
     } else {

@@ -10,20 +10,17 @@ const resCode = { success: 1, fail: -1 }
 
 const commonResponse = (ctx, status) => {
   return async (msg, obj = {}) => {
-    const rtn = { rtnCode: status }
 
     if (msg instanceof Object) {
       obj = msg
       msg = undefined
     }
 
-    (status < 0) ? (rtn.errMsg = msg || '请求失败') : (rtn.rtnMsg = msg || '请求成功')
+    Object.assign(obj)
 
-    Object.assign(rtn, obj)
+    logger.debug(`Response data for request ${ctx.path}:`, JSON.stringify(obj))
 
-    logger.debug(`Response data for request ${ctx.path}:`, JSON.stringify(rtn))
-
-    return ctx.body = rtn
+    return ctx.body = obj
   }
 }
 
