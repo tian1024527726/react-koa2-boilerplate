@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Inject from '../redux/inject';
 import './app.scss'
 import '../styles/index.scss'
 
